@@ -1,0 +1,11 @@
+---
+# sample playbook
+- name: Sample Playbook
+  hosts: all
+  vars:
+    test_var: SAMPLE
+  tasks:
+    - name: Check Service
+      service:
+        name: httpd
+        state: started
