@@ -1,11 +1,21 @@
 ---
 # sample playbook
 - name: Sample Playbook
-  hosts: all
+  hosts: appservers
+  connection: local
   vars:
-    test_var: SAMPLE
+    #test_var: SAMPLE
+    values:
+      - value1
+      - value2
+      - value3
   tasks:
+    - debug: var=test_var
+    - debug: var=inventory_hostname
+    - debug: var=ansible_hosts
     - name: Check Service
-      service:
-        name: httpd
-        state: started
+      command: 'echo {{ item }}'
+      register: result
+      with_items: "{{ values }}"
+#    - debug: msg="{{ result.stdout_lines }}"
+    - debug: msg="{{ result.results }}"

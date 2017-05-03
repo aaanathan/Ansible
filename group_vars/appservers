@@ -1,2 +1,2 @@
 ---
-app_path: /opt/
+test_var: "From group_vars folder"
